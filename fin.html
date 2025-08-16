@@ -1,0 +1,1548 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chez Younes - Excellence Mécanique & Électrique</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1A1A2E; /* Noir bleuté profond */
+            --secondary: #16213E; /* Bleu marine */
+            --accent: #0F3460; /* Bleu foncé */
+            --accent-dark: #0A2647; /* Bleu très foncé */
+            --accent-light: #1F4690; /* Bleu roi */
+            --text: #FFFFFF; /* Blanc */
+            --text-dark: #333333; /* Gris foncé */
+            --text-secondary: #E8E8E8; /* Gris très clair */
+            --bg-light: #F5F5F5; /* Blanc cassé */
+            --card-bg: #FFFFFF; /* Blanc pur */
+            --gradient: linear-gradient(135deg, #0F3460 0%, #1F4690 100%); /* Dégradé bleu */
+            --glass: rgba(26, 26, 46, 0.7); /* Verre semi-transparent */
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --highlight: #FFA41B; /* Orange vif pour les accents */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            line-height: 1.2;
+            text-align: center;
+        }
+
+        /* Header Glow Effect */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            background-color: var(--primary);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass-border);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+
+        header.scrolled {
+            padding: 1rem 5%;
+            background-color: var(--primary);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--highlight);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+
+        .logo:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+
+        /* Navigation Hover Effect */
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+            position: relative;
+        }
+
+        nav ul li a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+
+        nav ul li a::before {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--highlight);
+            transition: width 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+
+        nav ul li a:hover {
+            color: var(--highlight);
+        }
+
+        nav ul li a:hover::before {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 1001;
+        }
+
+        .mobile-menu-btn:hover {
+            color: var(--highlight);
+        }
+
+        /* Hero Section with Parallax */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(26, 26, 46, 0.9), rgba(15, 52, 96, 0.9)), 
+                        url('https://images.unsplash.com/photo-1494976388901-7509ad5939a9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center/cover fixed;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(transparent, var(--primary));
+            z-index: 1;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            color: white;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            animation: fadeInDown 1s ease, float 6s ease-in-out infinite;
+        }
+
+        .hero h1 span {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeIn 1.5s ease;
+        }
+
+        /* Glowing CTA Button */
+        .cta-button {
+            display: inline-block;
+            background: var(--gradient);
+            color: white;
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+            box-shadow: 0 10px 30px rgba(31, 70, 144, 0.4);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 1s ease, pulse 2s infinite;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: 0.5s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(31, 70, 144, 0.6);
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        /* Services Section with Floating Cards */
+        .services {
+            padding: 8rem 5%;
+            background-color: var(--bg-light);
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            color: var(--accent);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease;
+        }
+
+        .section-title.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title span {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--accent);
+            margin-bottom: 4rem;
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease 0.2s;
+        }
+
+        .section-subtitle.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Service Cards with Glass Morphism */
+        .service-section {
+            margin-bottom: 6rem;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease;
+        }
+
+        .service-section.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .service-title {
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+        }
+
+        .service-title i {
+            margin-right: 15px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2rem;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .service-item {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(31, 70, 144, 0.1);
+            transition: all 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
+            transform: translateY(0);
+            opacity: 0;
+        }
+
+        .service-item.animated {
+            opacity: 1;
+        }
+
+        .service-item:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 20px 50px rgba(31, 70, 144, 0.3);
+        }
+
+        .service-img {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .service-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+
+        .service-item:hover .service-img img {
+            transform: scale(1.1);
+        }
+
+        .service-img::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .service-item:hover .service-img::after {
+            opacity: 1;
+        }
+
+        .service-info {
+            padding: 2rem;
+            position: relative;
+        }
+
+        .service-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+            transition: all 0.4s ease;
+            text-align: center;
+        }
+
+        .service-item:hover .service-info h3 {
+            color: var(--highlight);
+        }
+
+        .service-info p {
+            color: var(--text-dark);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        /* Reviews Section with 3D Effect */
+        .reviews {
+            padding: 6rem 5%;
+            background: var(--gradient);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .reviews::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/dark-stripes.png');
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        .reviews-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .review-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            padding: 2.5rem;
+            border-radius: 15px;
+            transition: all 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
+            transform-style: preserve-3d;
+            transform: perspective(1000px) rotateY(0deg);
+            box-shadow: 0 15px 40px rgba(31, 70, 144, 0.2);
+            opacity: 0;
+            transform: translateY(50px) perspective(1000px) rotateY(30deg);
+        }
+
+        .review-card.animated {
+            opacity: 1;
+            transform: translateY(0) perspective(1000px) rotateY(0deg);
+        }
+
+        .review-card:hover {
+            transform: perspective(1000px) rotateY(5deg) translateY(-10px);
+            box-shadow: 0 25px 60px rgba(31, 70, 144, 0.3);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .review-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            font-style: italic;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .review-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .author-img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 1.5rem;
+            border: 3px solid white;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.5s ease;
+        }
+
+        .review-card:hover .author-img {
+            transform: scale(1.1);
+            border-color: var(--highlight);
+        }
+
+        .author-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .author-info h4 {
+            font-size: 1.3rem;
+            color: white;
+            margin-bottom: 0.3rem;
+        }
+
+        .author-info p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+
+        .rating {
+            color: var(--highlight);
+            margin-top: 0.5rem;
+            font-size: 1rem;
+        }
+
+        /* Contact Section with Interactive Map */
+        .contact {
+            padding: 6rem 5%;
+            background-color: var(--bg-light);
+            position: relative;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 4rem;
+            margin-top: 4rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            background: var(--card-bg);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(31, 70, 144, 0.05);
+            transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+
+        .contact-item.animated {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px) translateX(0);
+            box-shadow: 0 15px 40px rgba(31, 70, 144, 0.2);
+        }
+
+        .contact-item i {
+            font-size: 1.5rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-top: 5px;
+        }
+
+        .contact-text h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            color: var(--accent);
+        }
+
+        .contact-text p, .contact-text a {
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-text a:hover {
+            color: var(--highlight);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            color: var(--accent);
+            background-color: var(--card-bg);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            box-shadow: 0 5px 20px rgba(31, 70, 144, 0.1);
+            transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+
+        .social-links a:hover {
+            background: var(--gradient);
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(31, 70, 144, 0.4);
+        }
+
+        .map-container {
+            height: 500px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(31, 70, 144, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+            opacity: 0;
+            transform: translateX(50px);
+        }
+
+        .map-container.animated {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .map-container:hover {
+            transform: translateY(-5px) translateX(0);
+            box-shadow: 0 20px 50px rgba(31, 70, 144, 0.3);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Footer with Wave Effect */
+        footer {
+            background-color: var(--primary);
+            color: var(--text);
+            padding: 6rem 5% 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z' opacity='.25' fill='%231f4690'%3E%3C/path%3E%3Cpath d='M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z' opacity='.5' fill='%231f4690'%3E%3C/path%3E%3Cpath d='M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,233.88-22.17V0Z' fill='%231f4690'%3E%3C/path%3E%3C/svg%3E");
+            background-size: cover;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 4rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-col h3 {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            color: white;
+            position: relative;
+            padding-bottom: 15px;
+            text-align: center;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--highlight);
+        }
+
+        .footer-col p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            align-items: center;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-links a::before {
+            content: '\f054';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            font-size: 0.7rem;
+            margin-right: 10px;
+            color: var(--highlight);
+            opacity: 0;
+            transition: all 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--highlight);
+            transform: translateX(10px);
+        }
+
+        .footer-links a:hover::before {
+            opacity: 1;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            justify-content: center;
+        }
+
+        .footer-social a {
+            color: var(--text);
+            background-color: rgba(255, 255, 255, 0.1);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+            font-size: 1.1rem;
+        }
+
+        .footer-social a:hover {
+            background: var(--gradient);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(31, 70, 144, 0.4);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 5rem;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 2;
+        }
+
+        .copyright {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+            z-index: 999;
+            box-shadow: 0 5px 25px rgba(31, 70, 144, 0.4);
+        }
+
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px) rotate(5deg);
+            box-shadow: 0 10px 35px rgba(31, 70, 144, 0.6);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 10px 30px rgba(31, 70, 144, 0.4);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 15px 40px rgba(31, 70, 144, 0.6);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 10px 30px rgba(31, 70, 144, 0.4);
+            }
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3.2rem;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav ul {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 80%;
+                height: 100vh;
+                background-color: var(--primary);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 2rem;
+                transition: all 0.5s ease;
+                z-index: 1000;
+                box-shadow: 5px 0 30px rgba(0, 0, 0, 0.5);
+            }
+            
+            nav ul.active {
+                left: 0;
+            }
+            
+            nav ul li {
+                margin: 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .map-container {
+                height: 400px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .service-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <a href="#" class="logo">
+            <i class="fas fa-tools"></i> CHEZ YOUNES
+        </a>
+        <nav>
+            <button class="mobile-menu-btn" id="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul id="nav-menu">
+                <li><a href="#home">Accueil</a></li>
+                <li><a href="#auto">Mécanique Auto</a></li>
+                <li><a href="#moto">Mécanique Moto</a></li>
+                <li><a href="#electricite">Électricité</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Excellence <span>Mécanique</span> & <span>Électrique</span></h1>
+            <p>Chez Younes, nous combinons savoir-faire artisanal et technologie de pointe pour des services irréprochables en mécanique automobile, moto et électricité bâtiment.</p>
+            <a href="#contact" class="cta-button">Prendre Rendez-vous</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services">
+        <h2 class="section-title">Nos <span>Services</span></h2>
+        <p class="section-subtitle">Découvrez notre gamme complète de services professionnels</p>
+        
+        <!-- Mécanique Auto -->
+        <div class="service-section" id="auto">
+            <h3 class="service-title"><i class="fas fa-car"></i> Mécanique Automobile</h3>
+            <div class="service-grid">
+                <!-- Service 1 -->
+                <div class="service-item">
+                    <div class="service-img">
+                        <img src="https://www.directgarantie.fr/wp-content/uploads/2022/02/10-choses-a%CC%80-savoir-sur-la-mecanique-direct-garantien-scaled.jpg" alt="Réparation moteur">
+                    </div>
+                    <div class="service-info">
+                        <h3>Réparation Moteur</h3>
+                        <p>Diagnostic et réparation complète des problèmes moteur avec des outils de pointe et une expertise approfondie.</p>
+                    </div>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-item">
+                    <div class="service-img">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNblstVdLKi9yXsupu5N5LeU003F78w5SvQA&s" alt="Vidange">
+                    </div>
+                    <div class="service-info">
+                        <h3>Vidange & Entretien</h3>
+                        <p>Service complet de vidange et entretien préventif pour prolonger la durée de vie de votre véhicule.</p>
+                    </div>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-item">
+                    <div class="service-img">
+                        <img src="https://planet-tools.fr/blog/wp-content/uploads/2024/03/systeme-de-freinage-composants-et-entretien-628x628.jpg" alt="Freins">
+                    </div>
+                    <div class="service-info">
+                        <h3>Système de Freinage</h3>
+                        <p>Inspection, réparation et remplacement des composants du système de freinage pour votre sécurité.</p>
+                    </div>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="service-item">
+                    <div class="service-img">
+                        <img src="https://leocare.eu/fr/wp-content/uploads/2022/12/Diagnostic-a-domicile.jpg" alt="Diagnostic">
+                    </div>
+                    <div class="service-info">
+                        <h3>Diagnostic Électronique</h3>
+                        <p>Utilisation d'équipements modernes pour identifier rapidement les problèmes électroniques de votre véhicule.</p>
+                    </div>
+                </div>
+                
+                <!-- Service 5 -->
+                <div class="service-item">
+                    <div class="service-img">
+                        <img src="https://automecano.ca/wp-content/uploads/2021/11/Services-et-mecaniques-suspension-et-direction.jpg" alt="Suspension">
+                    </div>
+                    <div class="service-info">
+                        <h3>Suspension & Direction</h3>
+                        <p>Réglage et réparation des systèmes de suspension et de direction pour un confort de conduite optimal.</p>
+                    </div>
+                </div>
+                
+                <!-- Service 6 -->
+                <div class="service-item">
+                    <div class="service-img">
+                        <img src="https://www.euromaster.fr/upload/euromaster_eshop/template-page/image/mobile/fr_FR/598/climatisation-auto-mobile.png" alt="Climatisation">
+                    </div>
+                    <div class="service-info">
+                        <h3>Climatisation</h3>
+                        <p>Recharge et réparation des systèmes de climatisation pour votre confort en toutes saisons.</p>
+                    </div>
+                </div>
+                
+                <!-- Service 7 -->
+                <div class="service-item">
+                    <div class="service-img">
+                        <img src="https://f.hellowork.com/obs-static-images/seo/ObsJob/mecanicien.jpg" alt="Carrosserie">
+                    </div>
+                    <div class="service-info">
+                        <h3>Carrosserie</h3>
+                        <p>Réparation de la carrosserie et peinture professionnelle pour redonner à votre voiture son éclat d'origine.</p>
+                    </div>
+                </div>
+                
+                <!-- Service 8 -->
+                <div class="service-item">
+                    <div class="service-img">
+                        <img src="https://www.ecoledespros.fr/wp-content/uploads/sites/5/2022/03/edp-metier-devenir-mecanicien-1.jpg" alt="Préparation technique">
+                    </div>
+                    <div class="service-info">
+                        <h3>Préparation Technique</h3>
+                        <p>Contrôle technique complet et préparation pour garantir la conformité et la sécurité de votre véhicule.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mécanique Moto -->
+        <div class="service-section" id="moto">
+            <h3 class="service-title"><i class="fas fa-motorcycle"></i> Mécanique Moto</h3>
+            <div class="service-grid">
+                <!-- Service 1 -->
+                <div class="service-item">
+                    <div class="service-img">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1OzE3VfAEa3lwDRRgNviz1hOY7Nv38ZjEVA&s" alt="Entretien moto">
+                    </div>
+                    <div class="service-info">
+                        <h3>Entretien Régulier</h3>
+                        <p>Vidange, réglage des chaînes, vérification des niveaux et entretien complet pour garder votre moto en parfait état.</p>
+                    </div>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-item">
+                    <div class="service-img">
+                        <img src="https://www.actumoto.ch/wp-content/uploads/2021/09/Atelier_4_2021_freinage_actumoto_rideshaper_4.jpg" alt="Freins moto">
+                    </div>
+                    <div class="service-info">
+                        <h3>Système de Freinage</h3>
+                        <p>Remplacement des plaquettes, purge du circuit hydraulique et contrôle des disques pour une sécurité optimale.</p>
+                    </div>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-item">
+                    <div class="service-img">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0Q7pyJzGfYHs6dupEl9vjUMjTZhD1jqpLEg&s" alt="Suspension moto">
+                    </div>
+                    <div class="service-info">
+                        <h3>Suspension</h3>
+                        <p>Réglage des suspensions avant et arrière selon votre poids et style de conduite pour un meilleur confort.</p>
+                    </div>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="service-item">
+                    <div class="service-img">
+                        <img src="https://www.rcmoteur.fr/ressources/images/shutterstock-114594790_339d_lg.jpg" alt="Moteur moto">
+                    </div>
+                    <div class="service-info">
+                        <h3>Réparation Moteur</h3>
+                        <p>Dépannage et réparation complète des moteurs de moto, toutes cylindrées et marques confondues.</p>
+                    </div>
+                </div>
+                
+                <!-- Service 5 -->
+                <div class="service-item">
+                    <div class="service-img">
+                        <img src="https://static.vecteezy.com/ti/photos-gratuite/p2/9505626-mecanicien-moto-verifier-l-etat-du-systeme-de-transmission-automatique-ou-du-systeme-d-embrayage-du-scooter-au-garage-reparation-et-entretien-moto-concept-selective-focus-photo.jpg" alt="Transmission moto">
+                    </div>
+                    <div class="service-info">
+                        <h3>Transmission</h3>
+                        <p>Remplacement de chaîne, pignons et réglage de la tension pour une transmission optimale.</p>
+                    </div>
+                </div>
+                
+                <!-- Service 6 -->
+                <div class="service-item">
+                    <div class="service-img">
+                        <img src="https://www.motoconduite.fr/wp-content/uploads/2021/10/mecanique-moto.jpg" alt="Électricité moto">
+                    </div>
+                    <div class="service-info">
+                        <h3>Électricité</h3>
+                        <p>Diagnostic et réparation des problèmes électriques : batterie, alternateur, éclairage et circuits.</p>
+                    </div>
+                </div>
+                
+                <!-- Service 7 -->
+                <div class="service-item">
+                    <div class="service-img">
+                        <img src="https://apex-motos.com/wp-content/uploads/2023/10/Sans-titre1-768x513.png" alt="Carrosserie moto">
+                    </div>
+                    <div class="service-info">
+                        <h3>Carrosserie</h3>
+                        <p>Réparation de carénages, peinture et personnalisation selon vos goûts et préférences.</p>
+                    </div>
+                </div>
+                
+                <!-- Service 8 -->
+                <div class="service-item">
+                    <div class="service-img">
+                        <img src="https://www.street-moto-piece.fr/blog/wp-content/uploads/2023/07/690be0191b7b2690fad4f6eaf98675dc.jpg" alt="Préparation moto">
+                    </div>
+                    <div class="service-info">
+                        <h3>Préparation Saisonnière</h3>
+                        <p>Préparation hivernage et remise en route pour garantir une moto prête à chaque saison.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Électricité Bâtiment -->
+        <div class="service-section" id="electricite">
+            <h3 class="service-title"><i class="fas fa-bolt"></i> Électricité Bâtiment</h3>
+            <div class="service-grid">
+                <!-- Service 1 -->
+                <div class="service-item">
+                    <div class="service-img">
+                        <img src="https://www.energie-locale.fr/wp-content/uploads/2022/02/636d902e96b3e959313c44287d7c7a96_html_4d4b7fa7ad8dc2f6.jpg" alt="Installation électrique">
+                    </div>
+                    <div class="service-info">
+                        <h3>Installation Électrique</h3>
+                        <p>Installation complète et sécurisée de votre réseau électrique selon les normes en vigueur.</p>
+                    </div>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-item">
+                    <div class="service-img">
+                        <img src="https://electricien.com.tn/wp-content/uploads/2023/02/lelectricite-dune-maison.jpg" alt="Dépannage">
+                    </div>
+                    <div class="service-info">
+                        <h3>Dépannage</h3>
+                        <p>Intervention rapide pour tous types de pannes électriques dans votre habitation ou local professionnel.</p>
+                    </div>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-item">
+                    <div class="service-img">
+                        <img src="https://electricite-batiment.com/wp-content/uploads/2015/07/Electricien%20batiment%20algerie.jpg" alt="Tableau électrique">
+                    </div>
+                    <div class="service-info">
+                        <h3>Tableau Électrique</h3>
+                        <p>Installation et mise aux normes de votre tableau électrique avec disjoncteurs différentiels.</p>
+                    </div>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="service-item">
+                    <div class="service-img">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJvfCNXle9XVKlzuO9LaRgYW5ins5MpagdYA&s" alt="Éclairage">
+                    </div>
+                    <div class="service-info">
+                        <h3>Éclairage</h3>
+                        <p>Installation de systèmes d'éclairage intérieur et extérieur, spots LED, appliques et lustres.</p>
+                    </div>
+                </div>
+                
+                <!-- Service 5 -->
+                <div class="service-item">
+                    <div class="service-img">
+                        <img src="https://www.reno-info-maison.com/rim_images/articles/prise-et-interrupteurs-etanches.jpg" alt="Prise et interrupteurs">
+                    </div>
+                    <div class="service-info">
+                        <h3>Prises & Interrupteurs</h3>
+                        <p>Remplacement et installation de prises électriques et interrupteurs en tout genre.</p>
+                    </div>
+                </div>
+                
+                <!-- Service 6 -->
+                <div class="service-item">
+                    <div class="service-img">
+                        <img src="https://img.kompass.com/sys-master-images/h34/h1c/9921932427294/electricite-et-armoire-jpg" alt="Domotique">
+                    </div>
+                    <div class="service-info">
+                        <h3>Domotique</h3>
+                        <p>Installation de systèmes domotiques pour automatiser votre maison (éclairage, chauffage, sécurité).</p>
+                    </div>
+                </div>
+                
+                <!-- Service 7 -->
+                <div class="service-item">
+                    <div class="service-img">
+                        <img src="https://controlepont.fr/storage/2019/10/controle-tableau-eletcrique.jpg" alt="Vérification">
+                    </div>
+                    <div class="service-info">
+                        <h3>Vérification Installation</h3>
+                        <p>Diagnostic complet de votre installation électrique pour détecter les anomalies et risques potentiels.</p>
+                    </div>
+                </div>
+                
+                <!-- Service 8 -->
+                <div class="service-item">
+                    <div class="service-img">
+                        <img src="https://www.sef-formation.info/wp-content/uploads/sites/19/2021/02/EB1.jpg" alt="Rénovation">
+                    </div>
+                    <div class="service-info">
+                        <h3>Rénovation Électrique</h3>
+                        <p>Mise aux normes et modernisation complète des installations électriques anciennes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="reviews">
+        <h2 class="section-title">Témoignages</h2>
+        <p class="section-subtitle">Ce que nos clients disent de nous</p>
+        <div class="reviews-container">
+            <!-- Review 1 -->
+            <div class="review-card">
+                <div class="review-content">
+                    "Younes a sauvé ma voiture qui avait un problème complexe que personne n'arrivait à diagnostiquer. Professionnalisme et expertise au rendez-vous. Je recommande sans hésiter !"
+                </div>
+                <div class="review-author">
+                    <div class="author-img">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Karim">
+                    </div>
+                    <div class="author-info">
+                        <h4>Karim B.</h4>
+                        <p>Client Mécanique Auto</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Review 2 -->
+            <div class="review-card">
+                <div class="review-content">
+                    "Service exceptionnel pour ma moto. Younes a su identifier le problème rapidement et m'a donné des conseils précieux pour l'entretien. Un vrai passionné qui sait de quoi il parle !"
+                </div>
+                <div class="review-author">
+                    <div class="author-img">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sara">
+                    </div>
+                    <div class="author-info">
+                        <h4>Sara L.</h4>
+                        <p>Client Mécanique Moto</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Review 3 -->
+            <div class="review-card">
+                <div class="review-content">
+                    "Intervention électrique rapide et efficace. Tarifs honnêtes et travail soigné. Je fais appel à Younes pour tous mes travaux maintenant. Une équipe fiable et compétente !"
+                </div>
+                <div class="review-author">
+                    <div class="author-img">
+                        <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Mehdi">
+                    </div>
+                    <div class="author-info">
+                        <h4>Mehdi T.</h4>
+                        <p>Client Électricité</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <h2 class="section-title">Nous <span>Contacter</span></h2>
+        <p class="section-subtitle">Prenez rendez-vous ou posez-nous vos questions</p>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div class="contact-text">
+                        <h3>Adresse</h3>
+                        <p>Hassi mafsoukh, Oran, ALGERIE</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <div class="contact-text">
+                        <h3>Téléphone</h3>
+                        <a href="tel:+3210794101690">+321 7 94 10 16 90</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <div class="contact-text">
+                        <h3>Email</h3>
+                        <a href="mailto:malkiyounes930@gmail.com">malkiyounes930@gmail.com</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-clock"></i>
+                    <div class="contact-text">
+                        <h3>Horaires</h3>
+                        <p> Dimanche - Jeudi: 9h-18h</p>
+                    </div>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/malki.younes.73" target="_blank">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.instagram.com/malki7800?igsh=Zm15N3dobTRvc3I1" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3190.123456789012!2d-0.633178!3d35.6975!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzXCsDQxJzUxLjAiTiAwwrAzNyc1OS4wIlc!5e0!3m2!1sfr!2sdz!4v1234567890123!5m2!1sfr!2sdz" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>Chez Younes</h3>
+                <p>Expertise mécanique et électrique de qualité supérieure depuis plus de 15 ans. Nous mettons notre savoir-faire à votre service.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Services</h3>
+                <div class="footer-links">
+                    <a href="#auto">Mécanique Auto</a>
+                    <a href="#moto">Mécanique Moto</a>
+                    <a href="#electricite">Électricité Bâtiment</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Liens Utiles</h3>
+                <div class="footer-links">
+                    <a href="#home">Accueil</a>
+                    <a href="#contact">Contact</a>
+                    <a href="#">FAQ</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Réseaux Sociaux</h3>
+                <div class="footer-social">
+                    <a href="https://www.facebook.com/malki.younes.73" target="_blank">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.instagram.com/malki7800?igsh=Zm15N3dobTRvc3I1" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="copyright">&copy; 2025 Chez Younes. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const navMenu = document.getElementById('nav-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navMenu.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('#nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Back to top button
+        const backToTopBtn = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('active');
+            } else {
+                backToTopBtn.classList.remove('active');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                if (this.getAttribute('href') === '#') return;
+                
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.section-title, .section-subtitle, .service-section, .service-item, .review-card, .contact-item, .map-container');
+            const windowHeight = window.innerHeight;
+            const scrollPosition = window.scrollY || window.pageYOffset;
+            
+            elements.forEach((element, index) => {
+                const elementPosition = element.getBoundingClientRect().top + scrollPosition;
+                const animationPoint = windowHeight / 1.2;
+                
+                if (scrollPosition > elementPosition - animationPoint) {
+                    // Staggered animation for service items
+                    if (element.classList.contains('service-item')) {
+                        setTimeout(() => {
+                            element.classList.add('animated');
+                        }, 150 * (index % 8));
+                    } else {
+                        element.classList.add('animated');
+                    }
+                }
+            });
+        };
+
+        // Run animation on scroll and load
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            hero.style.backgroundPositionY = scrollPosition * 0.5 + 'px';
+        });
+
+        // Hover effects for service items
+        document.querySelectorAll('.service-item').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                const icon = item.querySelector('i');
+                if (icon) {
+                    icon.style.animation = 'pulse 2s infinite';
+                }
+            });
+            
+            item.addEventListener('mouseleave', () => {
+                const icon = item.querySelector('i');
+                if (icon) {
+                    icon.style.animation = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
